@@ -1,0 +1,66 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+	height: 100vh;
+	width: 100%;
+    background-image: url('img/bk5.jpg'); /* Make sure the image path is correct */
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    color: #fff; /* Change text color for better readability on a background */
+}
+
+header {
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin: 20px 0;
+    padding: 3px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.service {
+    margin-bottom: 15px;
+}
+
+footer {
+	align-self:flex-end;
+    text-align: center;
+    padding: 1px;
+    background-color: rgba(0, 123, 255, 0.5); /* Slightly transparent footer */
+    color: white;
+    position: relative;
+	text-size-adjust: 8px;
+    bottom: 0;
+    width: 100%;
+}
+form{
+	font-family: Arial, sans-serif;
+	text-align: center;
+	background-color: rgba(0, 50, 255, 0.5);
+}
+
