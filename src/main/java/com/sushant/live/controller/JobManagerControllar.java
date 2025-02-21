@@ -14,5 +14,10 @@ public class JobManagerControllar {
 		System.out.println("Working as expected ");
 		return "home";
 	}
-
+	
+	@GetMapping("/login")
+	public String login() {
+		return "loginnew";
+	}
+	
 }

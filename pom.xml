@@ -102,6 +102,18 @@
 		    <version>4.0.1</version> <!-- Change version if needed -->
 		    <scope>provided</scope>
 		</dependency>
+		
+		<dependency>
+		    <groupId>jakarta.servlet</groupId>
+		    <artifactId>jakarta.servlet-api</artifactId>
+		    <scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.glassfish.web</groupId>
+		    <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+		    <version>3.0.0</version>
+		</dependency>
+
 
 
 	</dependencies>
