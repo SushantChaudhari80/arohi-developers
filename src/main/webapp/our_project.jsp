@@ -147,12 +147,12 @@
             </div>
         </div>
     </section>
-
+	<jsp:include page="url.jsp" />
     <script>
         $(document).ready(function() {
             function loadProjects() {
                 $.ajax({
-                    url: "/api/projects/all",
+                    url: prod_url+"/api/projects/all",
                     type: "GET",
                     success: function(projects) {
                         let projectGrid = $(".project-grid");

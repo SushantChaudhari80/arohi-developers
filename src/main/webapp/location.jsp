@@ -141,12 +141,12 @@
             <a href="#"><i class="fab fa-linkedin"></i></a>
         </div>
     </footer>
-
+	<jsp:include page="url.jsp" />
     <script>
         $(document).ready(function() {
 			function loadLocations() {
 			       $.ajax({
-			           url: "api/location/all", // Adjust URL as per backend
+			           url: prod_url+"/api/location/all", // Adjust URL as per backend
 			           type: "GET",
 			           success: function (response) {
 			               console.log("API Response:", response);

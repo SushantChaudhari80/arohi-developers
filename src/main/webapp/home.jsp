@@ -313,7 +313,7 @@
     <script>
 		$(document).ready(function () {
 			$.ajax({
-			           url: "/api/stats/getDetails",
+			           url: prod_url+"/api/stats/getDetails",
 			           type: "GET",
 			           success: function (data) {
 			               $("#happyCustomers").text(data.happyCustomers + "+");

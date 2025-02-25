@@ -14,12 +14,12 @@
     <!-- jQuery & DataTables JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-
+	<jsp:include page="url.jsp" />
     <script>
         $(document).ready(function() {
             const table = $('#customerTable').DataTable({
                 ajax: {
-                    url: "/api/arohi/customer/all",
+                    url: prod_url+"/api/arohi/customer/all",
                     type: "GET",
                     dataSrc: ""
                 },
@@ -48,7 +48,7 @@
                 let customerId = $(this).data('id');
                 if (confirm("Are you sure you want to delete this customer?")) {
                     $.ajax({
-                        url: "/api/arohi/customer/delete/" + customerId,
+                        url: prod_url+"/api/arohi/customer/delete/" + customerId,
                         type: "DELETE",
                         success: function(response) {
                             alert("Customer deleted successfully!");

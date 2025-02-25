@@ -20,11 +20,11 @@
             <tbody id="projectTable"></tbody>
         </table>
     </div>
-
+	<jsp:include page="url.jsp" />
     <script>
         $(document).ready(function () {
             $.ajax({
-                url: "/api/projects/all",
+                url: prod_url+"/api/projects/all",
                 type: "GET",
                 success: function (projects) {
                     let tableContent = "";
@@ -52,7 +52,7 @@
         function deleteProject(projectId) {
             if (confirm("Are you sure you want to delete this project?")) {
                 $.ajax({
-                    url: "/api/projects/delete/" + projectId,
+                    url: prod_url+"/api/projects/delete/" + projectId,
                     type: "DELETE",
                     success: function () {
                         alert("Project deleted successfully!");

@@ -12,7 +12,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-    
+	<jsp:include page="url.jsp" />
     <script>
 		function hideForm() {
 		    document.getElementById("locationF").style.display = "none";
@@ -38,12 +38,12 @@
             // Function to load locations from API
             function loadLocations() {
                 $.ajax({
-                    url: "api/location/all",
+                    url: prod_url+"/api/location/all",
                     type: "GET",
                     success: function(data) {
                         table.clear(); // Clear existing table data
                         data.forEach(function(location) {
-                            $.get("api/location/image/" + location.id, function(imageData) {
+                            $.get(prod_url+"/api/location/image/" + location.id, function(imageData) {
                                 let imgSrc = "data:image/jpeg;base64," + imageData.image;
 								let row = [
 								    location.id,
@@ -80,7 +80,7 @@
                 formData.append("mapLink", $("#mapLink").val());
 
                 $.ajax({
-                    url: "api/location/save",
+                    url: prod_url+"/api/location/save",
                     type: "POST",
                     data: formData,
                     processData: false,
@@ -101,7 +101,7 @@
 				console.log(id);
                 if (confirm("Are you sure you want to delete this location?")) {
                     $.ajax({
-                        url: "api/location/delete/" + id,
+                        url: prod_url+"/api/location/delete/" + id,
                         type: "DELETE",
                         success: function(response) {
                             alert("Location deleted successfully!");

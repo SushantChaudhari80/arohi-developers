@@ -38,6 +38,7 @@
             background-color: #218838;
         }
     </style>
+	<jsp:include page="url.jsp" />
     <script>
         $(document).ready(function() {
             $("#customerForm").submit(function(event) {
@@ -51,7 +52,7 @@
                 };
                 
                 $.ajax({
-                    url: "/api/arohi/customer/add",
+                    url: prod_url+"/api/arohi/customer/add",
                     type: "POST",
                     contentType: "application/json",
                     data: JSON.stringify(customerData),

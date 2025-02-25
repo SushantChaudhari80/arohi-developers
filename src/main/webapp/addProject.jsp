@@ -33,6 +33,7 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<jsp:include page="url.jsp" />
     <script>
         $(document).ready(function () {
             $("#projectForm").submit(function (event) {
@@ -40,7 +41,7 @@
                 let formData = new FormData(this);
 
                 $.ajax({
-                    url: "/api/projects/add",
+                    url: prod_url+"/api/projects/add",
                     type: "POST",
                     data: formData,
                     processData: false,

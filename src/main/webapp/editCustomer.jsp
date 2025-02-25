@@ -10,7 +10,7 @@
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+	<jsp:include page="url.jsp" />
     <script>
         $(document).ready(function() {
             let urlParams = new URLSearchParams(window.location.search);
@@ -18,7 +18,7 @@
            console.log(customerId);
             // Fetch customer details
             $.ajax({
-                url: "/api/arohi/customer/" + customerId,
+                url: prod_url+"/api/arohi/customer/" + customerId,
                 type: "GET",
                 success: function(customer) {
                     $("#id").val(customer.id);
@@ -46,7 +46,7 @@
                 };
 
                 $.ajax({
-                    url: "/api/arohi/customer/update",
+                    url: prod_url+"/api/arohi/customer/update",
                     type: "PUT",
                     contentType: "application/json",
                     data: JSON.stringify(updatedCustomer),
