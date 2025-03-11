@@ -11,13 +11,20 @@
 <body>
     <div class="container mt-5">
         <h2 class="text-center">All Enquiries</h2>
+
+        <!-- Date Filter -->
+        <div class="mb-3">
+            <label for="filterDate" class="form-label">Filter by Date:</label>
+            <input type="date" id="filterDate" class="form-control">
+        </div>
+
         <table class="table table-bordered mt-3">
             <thead class="table-dark">
                 <tr>
                     <th>ID</th>
-					<th>Date</th>
+                    <th>Date</th>
                     <th>Name</th>
-					<th>Email</th>
+                    <th>Email</th>
                     <th>Mobile</th>
                     <th>Message</th>
                     <th>WhatsApp</th>
@@ -28,14 +35,21 @@
             </tbody>
         </table>
     </div>
-	<jsp:include page="url.jsp" />
+    
+    <jsp:include page="url.jsp" />
+
     <script>
         $(document).ready(function () {
             // Function to load enquiries
-            function loadEnquiries() {
+            function loadEnquiries(dateFilter = "") {
+                let apiUrl = prod_url + "/api/enquiries/all";
+                if (dateFilter) {
+                    apiUrl = prod_url + "/api/enquiries/by-date?date=" + dateFilter;
+                }
+
                 $.ajax({
                     type: "GET",
-                    url: prod_url+"/api/enquiries/all",
+                    url: apiUrl,
                     dataType: "json",
                     success: function (data) {
                         var tableBody = $("#enquiryTableBody");
@@ -51,7 +65,7 @@
                                 tableBody.append(
                                     "<tr>" +
                                     "<td>" + enquiry.id + "</td>" +
-									"<td>" + enquiry.e_date + "</td>" +
+                                    "<td>" + enquiry.e_date + "</td>" +
                                     "<td>" + enquiry.name + "</td>" +
                                     "<td>" + enquiry.email + "</td>" +
                                     "<td>" + enquiry.mobile + "</td>" +
@@ -68,8 +82,18 @@
                 });
             }
 
-            // Load enquiries on page load
+            // Load all enquiries on page load
             loadEnquiries();
+
+            // Filter enquiries when date is selected
+            $("#filterDate").on("change", function () {
+                let selectedDate = $(this).val();
+                if (selectedDate) {
+                    loadEnquiries(selectedDate);
+                } else {
+                    loadEnquiries(); // Load all if date is cleared
+                }
+            });
         });
     </script>
 </body>

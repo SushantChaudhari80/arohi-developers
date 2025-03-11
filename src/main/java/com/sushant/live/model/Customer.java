@@ -30,7 +30,7 @@ public class Customer {
     private String address;
 
     @Lob  // To indicate that the picture is a large object (BLOB)
-    @Column(name = "picture", columnDefinition = "BLOB")
+    @Column(name = "picture", columnDefinition = "MEDIUMBLOB")
     private byte[] picture;
     
     private String password;

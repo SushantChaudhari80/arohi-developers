@@ -17,7 +17,7 @@ public class Location {
     private String facilities;
     private String mapLink;
     @Lob
-    @Column(name = "image", columnDefinition = "BLOB")
+    @Column(name = "image", columnDefinition = "MEDIUMBLOB")
     private byte[] image;
     
 	public Long getId() {

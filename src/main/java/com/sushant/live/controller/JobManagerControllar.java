@@ -15,6 +15,11 @@ public class JobManagerControllar {
 		return "home";
 	}
 	
+	@GetMapping("/customer")
+	public String addCustomer() {
+		return "customerAdd";
+	}
+	
 	@GetMapping("/login")
 	public String login() {
 		return "loginnew";
