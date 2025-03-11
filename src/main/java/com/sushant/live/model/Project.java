@@ -14,7 +14,7 @@ public class Project {
     private String description;
 
     @Lob
-    @Column(name = "image", columnDefinition = "BLOB")
+    @Column(name = "image", columnDefinition = "MEDIUMBLOB")
     private byte[] image;
 
 	public Long getId() {

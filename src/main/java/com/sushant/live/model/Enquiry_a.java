@@ -1,5 +1,6 @@
 package com.sushant.live.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,7 +15,9 @@ public class Enquiry_a {
     private String name;
     private String email;
     private String mobile;
-    private String e_date;
+    
+    private String eDate; 
+    
     private String message;
 	public Long getId() {
 		return id;
@@ -48,10 +51,10 @@ public class Enquiry_a {
 	}
 	
 	public String getE_date() {
-		return e_date;
+		return eDate;
 	}
 	public void setE_date(String e_date) {
-		this.e_date = e_date;
+		this.eDate = e_date;
 	}
 	
 	public Enquiry_a(Long id, String name, String email, String mobile, String e_date, String message) {
@@ -60,7 +63,7 @@ public class Enquiry_a {
 		this.name = name;
 		this.email = email;
 		this.mobile = mobile;
-		this.e_date = e_date;
+		this.eDate = e_date;
 		this.message = message;
 	}
 	public Enquiry_a() {

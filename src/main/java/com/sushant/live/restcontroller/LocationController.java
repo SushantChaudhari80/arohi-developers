@@ -44,8 +44,9 @@ public class LocationController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Location> getLocationById(@PathVariable Long id) {
-        return locationService.getLocationById(id);
+    public Optional<Location> getLocationById(@PathVariable String id) {
+    	Long id1 = Long.parseLong(id);
+        return locationService.getLocationById(id1);
     }
 
     @GetMapping("/image/{id}")
