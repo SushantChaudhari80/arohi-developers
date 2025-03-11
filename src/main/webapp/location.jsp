@@ -25,11 +25,69 @@
             padding: 0;
             background-color: #f4f4f4;
         }
+        .navbar {
+	background-color: rgba(0, 0, 0, 0.8) !important; /* More transparency */
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	transition: background-color 0.3s ease-in-out;
+	backdrop-filter: blur(8px); /* Adds a slight blur effect */
+}
+
+.navbar-brand img {
+	height: 65px;
+	width: 65px;
+	border-radius: 20%; /* Circular shape */
+	border: 0px solid white; /* White border around the image */
+	padding: 1px; /* Space between image and border */
+	background-color: white; /* Ensures the background inside the border */
+	object-fit: contain; /* Ensures the full image is visible */
+}
+
+.navbar-light .navbar-nav .nav-link {
+	color: white !important; /* White nav items */
+	font-size: 1.4rem;
+	font-weight: 500;
+	transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+	color: #ff5733 !important; /* Orange hover effect */
+	transform: scale(1.15); /* Increased zoom effect */
+	transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+/* Change navbar toggler icon to white */
+.navbar-light .navbar-toggler-icon {
+	filter: invert(1);
+}
+
+.hero {
+	background:
+		url('https://source.unsplash.com/1600x900/?architecture,building')
+		no-repeat center center;
+	background-size: cover;
+	height: 90vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #fff;
+	font-weight: bold;
+	top: 50%;
+	color: rgba(255, 255, 255, 0.9); /* Faded background text */
+	font-size: 3rem; /* Bigger size for background text */
+	font-weight: 900;
+	letter-spacing: 5px;
+	text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+        
         header {
-            background-color: rgba(0, 0, 0, 0.4);
+            background-color: rgba(0, 0, 0, 0.2);
             color: #fff;
             padding: 20px;
             text-align: center;
+                border-radius: 15px; /* Adjust the value as needed for more or less curvature */
+                margin-top: 40px; /* Adjust the value for the desired top margin */
+            
         }
         #search {
             width: 80%;
@@ -117,20 +175,74 @@
     </style>
 </head>
 <body>
-    
-    <video class="video-bg" autoplay loop muted playsinline>
-        <source src="bgv.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
 
-    <header>
-        <h1>Explore Locations</h1>
-        <input type="text" id="search" placeholder="Search locations...">
-    </header>
+<nav class="navbar navbar-expand-lg navbar-light mb-5">
+		<div class="container">
+			<a class="navbar-brand" href="home.jsp"> <img src="logo.png"
+				alt="Arohi Developers">
+			</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarNav">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ms-auto">
+					<li class="nav-item me-3"><a class="nav-link" href="#sales">Sales</a></li>
+					<li class="nav-item me-3"><a class="nav-link"
+						href="our_project.jsp">Our Project</a></li>
+					<li class="nav-item me-3"><a class="nav-link"
+						href="location.jsp">Locations</a></li>
+					<li class="nav-item me-3"><a class="nav-link"
+						href="http://wa.me/+919665555079?text=Hi" target="_blank">Chat</a></li>
+					<li class="nav-item me-3"><a class="nav-link" href="#contact">Enquiry</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+
+	<!-- <section class="banner_section">
+		<img src="arohi_developer1.png" alt="Baner" class="hero-image" />
+	</section> -->
+
+	<!-- main content -->
+	<main class="main mb-5">
+		<!--  hero section  -->
+		<div id="hero" class="hero-banner section-padding"
+			style="background-image: url(posterbg1.png)">
+			<div class="container">
+				<div class="row align-items-center gy-5">
+					<div class="col-md-6">
+						<div class="hero-banner-content">
+							<h1 class="text-uppercase fw-bold text-warning">
+								Welcome <br>To <br>Arohi Developers
+							</h1>
+							<p class="my-4 text-light fs-4">
+								From Vision To Reality ,<br> We Build With Precision And
+								Passion .
+							</p>
+							<button
+								class="btn btn-warning fw-semibold text-light py-2 px-4 text-uppercase">
+								<a class="nav-link" href="RESUME_deepak_bharate.pdf">Download
+									Catalog</a>
+							</button>
+						</div>
+					</div>
+				</div>
+			
+
+
+ 
+    <header class="header">
+    <h2>Explore Locations</h2>
+    <input type="text" id="search" placeholder="Search locations...">
+</header>
     
     <section class="locations" id="locations-container">
         <!-- Locations will be loaded here dynamically -->
     </section>
+    </div>
+		</div>
 
     <footer class="footer">
         <p>&copy; 2025 Arohi Developers. All rights reserved.</p>
@@ -141,6 +253,8 @@
             <a href="#"><i class="fab fa-linkedin"></i></a>
         </div>
     </footer>
+    </main>
+		<!-- hero section end -->
 	<jsp:include page="url.jsp" />
     <script>
         $(document).ready(function() {

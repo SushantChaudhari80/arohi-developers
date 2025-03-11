@@ -446,27 +446,11 @@ textarea {
 					<div class="col-md-6">
 						<div class="about-content">
 							<h2 class="fw-bold mb-4 display-6">About Us</h2>
-							<p class="text-secondary">Lorem ipsum dolor sit amet
-								consectetur adipisicing elit. Quisquam doloribus quibusdam qui
-								ipsum nesciunt incidunt aliquid dolores neque sunt. Delectus
-								alias ratione corporis iusto quae sit voluptatem ipsam esse?
-								Ullam! Lorem ipsum dolor sit amet consectetur adipisicing elit.
-								Laboriosam eum quos eos pariatur qui exercitationem consectetur
-								consequuntur ea. Possimus, distinctio! Lorem ipsum dolor sit
-								amet consectetur adipisicing elit. Labore adipisci hic illum
-								delectus enim doloremque accusantium expedita nobis voluptate
-								accusamus. Lorem ipsum dolor sit amet consectetur adipisicing
-								elit. Labore atque doloremque maxime aspernatur harum ab id sed
-								eaque sequi beatae tempore, fuga in quaerat, provident ea
-								debitis aliquam a magnam nemo. At qui vero natus. Dolore aliquid
-								minima laboriosam quas placeat sit repellat neque, enim facere
-								voluptates odit omnis deserunt veniam soluta incidunt animi
-								ipsam, perferendis explicabo delectus dignissimos totam illo
-								officiis distinctio. Dolorem possimus sint quia eum itaque quam
-								harum? Autem obcaecati at molestiae ducimus pariatur ipsa,
-								officiis veniam fugit suscipit accusantium quasi itaque sint
-								deserunt, consequuntur commodi. Adipisci qui illum perferendis
-								ut at eligendi repellat illo tempore nam!!</p>
+							<p class="text-secondary">Buying/Selling Land Development Sites – Finding locations for investment, real estate, or business purposes.
+								Land Development Process – How to convert raw land into residential, commercial, or industrial properties.
+								Legal & Zoning Requirements – Understanding the permissions, zoning laws, and environmental regulations.
+								Technology in Land Development – Using GIS, surveying, or construction technologies.
+								Investment Opportunities – Where and how to invest in land development projects</p>
 						</div>
 					</div>
 					<div class="col-md-6">
