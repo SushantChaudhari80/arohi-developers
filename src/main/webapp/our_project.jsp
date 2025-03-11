@@ -6,6 +6,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Construction Projects</title>
+<!-- Bootstrap JS (Popper.js is included) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
@@ -25,12 +28,54 @@ body {
 	box-sizing: border-box;
 }
 
+.spinner-container {
+	display: none; /* Hidden by default; show it when needed */
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+	backdrop-filter: blur(5px); /* Blur effect */
+	z-index: 999; /* Above other elements */
+	justify-content: center; /* Center spinner horizontally */
+	align-items: center; /* Center spinner vertically */
+}
+
+.spinner {
+	position: fixed;
+	z-index: 999;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border: 5px solid #f3f3f3;
+	border-top: 5px solid #3498db;
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+}
+body {
+	font-family: 'Poppins', sans-serif;
+	background-color: #f8f9fa;
+}
+
 .navbar {
 	background-color: rgba(0, 0, 0, 0.8) !important; /* More transparency */
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	transition: background-color 0.3s ease-in-out;
 	backdrop-filter: blur(8px); /* Adds a slight blur effect */
-	margin-bo: 0; /* Remove top margin */
 }
 
 .navbar-brand img {
@@ -80,6 +125,16 @@ body {
 	text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
 }
 
+.video-bg {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	z-index: -1;
+}
+
 .container {
 	width: 80%;
 	margin: auto;
@@ -111,65 +166,84 @@ body {
 .nav-item .nav-link:hover {
 	color: #f4a261;
 }
+.hero {
+            background: url('https://source.unsplash.com/1600x900/?architecture,building') no-repeat center center;
+            background-size: cover;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 3rem;
+            font-weight: 900;
+            letter-spacing: 5px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        }
 
-header {
-	background-color: rgba(0, 0, 0, 0.2);
-	color: #fff;
-	padding: 20px;
-	text-align: center;
-	border-radius: 15px;
-	/* Adjust the value as needed for more or less curvature */
-	margin-top: 40px; /* Adjust the value for the desired top margin */
-}
+        .header {
+            background-color: rgba(0, 0, 0, 0.2);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            border-radius: 15px;
+            margin-top: 40px;
+        }
 
-.projects {
-	padding: 100px 0;
-	text-align: center;
+        .projects {
+    padding: 50px 0;
 }
 
 .project-grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-	/* This allows for responsive columns */
-	gap: 20px; /* Space between the grid items */
-	margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .project-card {
-	background: #f4f4f4;
-	border-radius: 10px;
-	overflow: hidden;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-	transition: transform 0.3s ease;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
 }
 
 .project-card:hover {
-	transform: scale(1.05);
+    transform: translateY(-5px);
 }
 
 .project-card img {
-	width: 100%;
-	height: 200px;
-	object-fit: cover;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
 }
 
 .project-info {
-	padding: 15px;
+    padding: 20px;
+    text-align: center;
 }
 
 .project-info h3 {
-	margin: 10px 0;
-	font-size: 20px;
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
 }
 
 .project-info p {
-	color: #666;
+    font-size: 1rem;
+    color: #777;
 }
 
-/* Optional: Ensure the parent container has enough width */
-.project-grid {
-	max-width: 1200px; /* Adjust as needed */
-	margin: 0 auto; /* Center the grid */
+/* Media Queries for Responsiveness */
+@media (max-width: 992px) {
+    .project-grid {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .project-card {
+        width: 100%;
+    }
 }
 
 .form-container {
