@@ -373,6 +373,17 @@ textarea {
 	color: black; /* Placeholder text color */
 	opacity: 0.8; /* Slightly transparent placeholder */
 }
+.locations-container {
+           display: grid;
+           grid-template-columns: repeat(3, 1fr);
+           gap: 10px;
+           padding: 10px;
+       }
+       .locations-container img {
+           width: 100%;
+           height: auto;
+           border-radius: 5px;
+       }
 </style>
 <script src="https://kit.fontawesome.com/a076d05399.js"
 	crossorigin="anonymous">
@@ -394,9 +405,7 @@ textarea {
 				<ul class="navbar-nav ms-auto">
 					<li class="nav-item me-3"><a class="nav-link" href="#sales">Sales</a></li>
 					<li class="nav-item me-3"><a class="nav-link"
-						href="our_project.jsp">Our Project</a></li>
-					<li class="nav-item me-3"><a class="nav-link"
-						href="location.jsp">Locations</a></li>
+						href="#locations-container">Our Project</a></li>
 					<li class="nav-item me-3"><a class="nav-link"
 						href="http://wa.me/+919665555079?text=Hi" target="_blank">Chat</a></li>
 					<li class="nav-item me-3"><a class="nav-link" href="#contact">Enquiry</a></li>
@@ -414,13 +423,13 @@ textarea {
 	<main class="main">
 		<!--  hero section  -->
 		<div id="hero" class="hero-banner section-padding"
-			style="background-image: url(posterbg1.png)">
+			style="background-image: url(arohi1.png)">
 			<div class="container">
 				<div class="row align-items-center gy-5">
 					<div class="col-md-6">
 						<div class="hero-banner-content">
 							<h1 class="text-uppercase fw-bold text-warning">
-								Welcome <br>To <br>Arohi Developers
+								  <br>  <br> <br><br><br><br>  
 							</h1>
 							<p class="my-4 text-light fs-4">
 								From Vision To Reality ,<br> We Build With Precision And
@@ -446,11 +455,11 @@ textarea {
 					<div class="col-md-6">
 						<div class="about-content">
 							<h2 class="fw-bold mb-4 display-6">About Us</h2>
-							<p class="text-secondary">Buying/Selling Land Development Sites – Finding locations for investment, real estate, or business purposes.
-								Land Development Process – How to convert raw land into residential, commercial, or industrial properties.
-								Legal & Zoning Requirements – Understanding the permissions, zoning laws, and environmental regulations.
-								Technology in Land Development – Using GIS, surveying, or construction technologies.
-								Investment Opportunities – Where and how to invest in land development projects</p>
+							<p class="text-secondary">	Greetings of the day !!!<br>
+							Aarohi Developers is a trusted name in the field of real estate and land development in Pune, with the experience of last two decades. Aarohi Developers, an ISO 9001:2008 certified company, developed acres of land with a passion to make the dream of owning land property come true for thousands of people.
+							Our team of dedicated professionals has prolific experience in Land acquisition, land development, plotting, construction and real estate. The projects are located in strategic locations with plush amenities and options like Residential, NA plots, Farmhouse plots and Villas. We have unique opportunities in form of steadily growing investments along with complete peace of mind for a lifetime. We have established the unique culture of trust & transparency
+							In today’s market, there are many investment options available on a large scale, but on comparing, the profit margin is very greater in land investment, than the other investment options. We ensure the safe and secure investment opportunities as well as take care and complete the legal documentation, with no hassle to our client.
+                               </p>
 						</div>
 					</div>
 					<div class="col-md-6">
@@ -463,9 +472,13 @@ textarea {
 			</div>
 		</section>
 		<!--  About Section end -->
+    <!-- Location section-->
+	<section class="locations-container" id="locations-container">
+	     
+	</section>
+	<!-- -->
 
-
-		<section class="facilities">
+	<!--	<section class="facilities">
 			<h2 class="text-3xl font-bold text-gray-600 mb-12">Our
 				Facilities</h2>
 			<div class="container mx-auto px-4">
@@ -496,7 +509,7 @@ textarea {
 					</div>
 				</div>
 			</div>
-		</section>
+		</section>-->
 
 
 		<div class="stats-container">
@@ -617,6 +630,34 @@ textarea {
 	<jsp:include page="url.jsp" />
 	<script>
 		$(document).ready(function() {
+			$.ajax({
+			    	url: prod_url+"/api/location/all", // Adjust URL as per backend
+					type: "GET",
+					success: function(response) {
+						    let locationsContainer = $("#locations-container");
+						 	locationsContainer.empty(); // Clear existing data
+							   console.log("API Response:", response);
+							   let data = Array.isArray(response) ? response : response.locations; // Ensure it's an array
+							   if (!Array.isArray(data)) {
+							   		                   console.error("Unexpected API response format:", response);
+							   		                   return;
+							   		               }
+												   
+
+                            data.forEach(function (location) {	
+								
+								let imageSrc = location.image 
+									? 'data:image/jpeg;base64,' + location.image
+									: "default-placeholder.jpg"; // Fallback image
+									let locationCard = '<img src="' + imageSrc + '" alt="Site Photo">';
+								 locationsContainer.append(locationCard);
+							});				   
+												   
+			               },
+			               error: function() {
+			                   alert("Error fetching photos");
+			               }
+			  });
 			$.ajax({
 				url : prod_url + "/api/stats/getDetails",
 				type : "GET",

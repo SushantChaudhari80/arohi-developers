@@ -13,13 +13,13 @@ public class StatsService {
 	ArohiCustomerService customerService;
 	
 	@Autowired
-	ProjectService projectService;
+	LocationService locationService;
 
 	 public Map<String, Integer> getStats(){
 		 Map<String, Integer> stats = new HashMap<>();
 
 	        stats.put("happyCustomers", customerService.getAllCustomers().size());
-	        stats.put("inProgressProjects", projectService.getAllProjects().size());
+	        stats.put("inProgressProjects", locationService.getAllLocations().size());
 	        return stats;
 	 }
 	
