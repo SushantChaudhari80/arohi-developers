@@ -418,6 +418,7 @@ textarea {
 	<!-- <section class="banner_section">
 		<img src="arohi_developer1.png" alt="Baner" class="hero-image" />
 	</section> -->
+	
 
 	<!-- main content -->
 	<main class="main">
