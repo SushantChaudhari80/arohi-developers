@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Arohi Developers - Real Estate</title>
 
-
-
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -15,13 +13,25 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-
 <style>
 .spinner-container {
 	display: none; /* Hidden by default; show it when needed */
 	position: fixed;
 	top: 0;
 	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+	backdrop-filter: blur(5px); /* Blur effect */
+	z-index: 999; /* Above other elements */
+	justify-content: center; /* Center spinner horizontally */
+	align-items: center; /* Center spinner vertically */
+}
+
+.spinner {
+	position: fixed;
+	z-index: 999;
+	top: left: 0;
 	width: 100%;
 	height: 100%;
 	background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
@@ -45,15 +55,21 @@
 	animation: spin 1s linear infinite;
 }
 
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+@
+keyframes spin { 0% {
+	transform: rotate(0deg);
 }
 
+100
+%
+{
+transform
+:
+rotate(
+360deg
+);
+}
+}
 }
 body {
 	font-family: 'Poppins', sans-serif;
@@ -95,23 +111,30 @@ body {
 	filter: invert(1);
 }
 
-.hero {
-	background:
-		url('https://source.unsplash.com/1600x900/?architecture,building')
-		no-repeat center center;
-	background-size: cover;
-	height: 90vh;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	color: #fff;
-	font-weight: bold;
-	top: 50%;
-	color: rgba(255, 255, 255, 0.9); /* Faded background text */
-	font-size: 3rem; /* Bigger size for background text */
-	font-weight: 900;
-	letter-spacing: 5px;
-	text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+#hero {
+    background: url('arohi1.png') no-repeat center top;
+    background-size: cover;
+    min-height: calc(100vh - 80px);
+    padding-top: 80px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+/* Change background image for mobile screens */
+@media (max-width: 576px) {
+    #hero {
+        background: url('home_bg.png') no-repeat center top;
+        background-size: cover;
+    }
+    
+    .hero-banner-content {
+        text-align: center;
+    }
+
+    .btn {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
 }
 
 .video-bg {
@@ -187,6 +210,8 @@ body {
 .facility-box:hover {
 	transform: scale(1.05);
 	border-color: #ff5733; /* Hover border color */
+	        width: 100vw; /* Ensure it spans full viewport width */
+	display: flex;
 }
 
 /* Icon Styling */
@@ -293,6 +318,10 @@ img {
 	max-width: 100%;
 }
 
+.hero-img {
+	
+}
+
 textarea {
 	min-height: 100px !important;
 }
@@ -328,16 +357,15 @@ textarea {
 	background-color: #121212 !important;
 }
 
-@keyframes progressLine {
-    to {
-        scale: 11;
-    }
+@
+keyframes progressLine {to { scale:11;
+	
 }
 
+}
 .btn-outline-warning {
-    border-width: 3px; /* Adjust the thickness as needed */
+	border-width: 3px; /* Adjust the thickness as needed */
 }
-
 
 .carousel-control-prev-icon, .carousel-control-next-icon {
 	background-color: #fccc2b; /* Change background color */
@@ -373,17 +401,59 @@ textarea {
 	color: black; /* Placeholder text color */
 	opacity: 0.8; /* Slightly transparent placeholder */
 }
-.locations-container {
-           display: grid;
-           grid-template-columns: repeat(3, 1fr);
-           gap: 10px;
-           padding: 10px;
-       }
-       .locations-container img {
-           width: 100%;
-           height: auto;
-           border-radius: 5px;
-       }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   .locations {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+        .location-card {
+            background: #fff;
+            margin: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 300px;
+            transition: transform 0.3s;
+        }
+        .location-card:hover {
+            transform: scale(1.05);
+        }
+        .location-card img {
+    width: 100%;  /* Ensure it fills the container width */
+    height: 200px; /* Set a fixed height */
+    object-fit: contain; /* Ensure the entire image fits without cropping */
+    background-color: #f8f8f8; /* Adds a white/grayish background for padding effect */
+    padding: 10px; /* Optional: Adds space around the image */
+}
+
+        .location-info {
+            padding: 15px;
+            text-align: center;
+        }
+       
+        
 </style>
 <script src="https://kit.fontawesome.com/a076d05399.js"
 	crossorigin="anonymous">
@@ -415,22 +485,22 @@ textarea {
 	</nav>
 
 
-	<!-- <section class="banner_section">
-		<img src="arohi_developer1.png" alt="Baner" class="hero-image" />
-	</section> -->
-	
+
+
 
 	<!-- main content -->
 	<main class="main">
 		<!--  hero section  -->
-		<div id="hero" class="hero-banner section-padding"
-			style="background-image: url(arohi1.png)">
+		<div id="hero" class="hero-banner section-padding img-fluid">
 			<div class="container">
 				<div class="row align-items-center gy-5">
 					<div class="col-md-6">
 						<div class="hero-banner-content">
 							<h1 class="text-uppercase fw-bold text-warning">
-								  <br>  <br> <br><br><br><br>  
+								<br> <br> <br>
+								<br>
+								<br>
+								<br>
 							</h1>
 							<p class="my-4 text-light fs-4">
 								From Vision To Reality ,<br> We Build With Precision And
@@ -456,11 +526,27 @@ textarea {
 					<div class="col-md-6">
 						<div class="about-content">
 							<h2 class="fw-bold mb-4 display-6">About Us</h2>
-							<p class="text-secondary">	Greetings of the day !!!<br>
-							Aarohi Developers is a trusted name in the field of real estate and land development in Pune, with the experience of last two decades. Aarohi Developers, an ISO 9001:2008 certified company, developed acres of land with a passion to make the dream of owning land property come true for thousands of people.
-							Our team of dedicated professionals has prolific experience in Land acquisition, land development, plotting, construction and real estate. The projects are located in strategic locations with plush amenities and options like Residential, NA plots, Farmhouse plots and Villas. We have unique opportunities in form of steadily growing investments along with complete peace of mind for a lifetime. We have established the unique culture of trust & transparency
-							In today’s market, there are many investment options available on a large scale, but on comparing, the profit margin is very greater in land investment, than the other investment options. We ensure the safe and secure investment opportunities as well as take care and complete the legal documentation, with no hassle to our client.
-                               </p>
+							<p class="text-secondary">
+								Greetings of the day !!!<br> Aarohi Developers is a trusted
+								name in the field of real estate and land development in Pune,
+								with the experience of last two decades. Aarohi Developers, an
+								ISO 9001:2008 certified company, developed acres of land with a
+								passion to make the dream of owning land property come true for
+								thousands of people. Our team of dedicated professionals has
+								prolific experience in Land acquisition, land development,
+								plotting, construction and real estate. The projects are located
+								in strategic locations with plush amenities and options like
+								Residential, NA plots, Farmhouse plots and Villas. We have
+								unique opportunities in form of steadily growing investments
+								along with complete peace of mind for a lifetime. We have
+								established the unique culture of trust & transparency In
+								today’s market, there are many investment options available on a
+								large scale, but on comparing, the profit margin is very greater
+								in land investment, than the other investment options. We ensure
+								the safe and secure investment opportunities as well as take
+								care and complete the legal documentation, with no hassle to our
+								client.
+							</p>
 						</div>
 					</div>
 					<div class="col-md-6">
@@ -473,44 +559,6 @@ textarea {
 			</div>
 		</section>
 		<!--  About Section end -->
-    <!-- Location section-->
-	<section class="locations-container" id="locations-container">
-	     
-	</section>
-	<!-- -->
-
-	<!--	<section class="facilities">
-			<h2 class="text-3xl font-bold text-gray-600 mb-12">Our
-				Facilities</h2>
-			<div class="container mx-auto px-4">
-				<div id="facilities">
-					<div class="facility-box">
-						<i class="fas fa-bolt"></i> 24/7 Electricity
-					</div>
-					<div class="facility-box">
-						<i class="fas fa-road"></i> Proper Roads
-					</div>
-					<div class="facility-box">
-						<i class="fas fa-water"></i> 24/7 Water Supply
-					</div>
-					<div class="facility-box">
-						<i class="fas fa-video"></i> 24/7 CCTV Security
-					</div>
-					<div class="facility-box">
-						<i class="fas fa-tree"></i> Green Parks
-					</div>
-					<div class="facility-box">
-						<i class="fas fa-car"></i> Parking Space
-					</div>
-					<div class="facility-box">
-						<i class="fas fa-building"></i> Govt Approved Plan
-					</div>
-					<div class="facility-box">
-						<i class="fas fa-trash"></i> Garbage Lines
-					</div>
-				</div>
-			</div>
-		</section>-->
 
 
 		<div class="stats-container">
@@ -558,6 +606,15 @@ textarea {
 				</a>
 			</div>
 		</section>
+		
+		
+		
+			<!-- Location Container -->
+   
+    <section class="locations" id="locations-container">
+        <!-- Locations will be loaded here dynamically -->
+    </section>
+ 
 
 		<div style="display: flex; justify-content: center; margin-top: 20px;">
 			<iframe
@@ -565,7 +622,15 @@ textarea {
 				width="600" height="450" style="border: 2px solid #fccc2b"
 				allowfullscreen="" loading="lazy"
 				referrerpolicy="no-referrer-when-downgrade"> </iframe>
-		</div>
+		</div>   
+
+
+
+
+	
+
+
+
 
 
 		<section id="contact"
@@ -630,74 +695,198 @@ textarea {
 	</footer>
 	<jsp:include page="url.jsp" />
 	<script>
+		$(document)
+				.ready(
+						function() {
+							$
+									.ajax({
+										url : prod_url + "/api/location/all", // Adjust URL as per backend
+										type : "GET",
+										success : function(response) {
+											let locationsContainer = $("#locations-container");
+											locationsContainer.empty(); // Clear existing data
+											console.log("API Response:",
+													response);
+											let data = Array.isArray(response) ? response
+													: response.locations; // Ensure it's an array
+											if (!Array.isArray(data)) {
+												console
+														.error(
+																"Unexpected API response format:",
+																response);
+												return;
+											}
+
+											data
+													.forEach(function(location) {
+
+														let imageSrc = location.image ? 'data:image/jpeg;base64,'
+																+ location.image
+																: "default-placeholder.jpg"; // Fallback image
+														let locationCard = '<img src="' + imageSrc + '" alt="Site Photo">';
+														locationsContainer
+																.append(locationCard);
+													});
+
+										},
+										error : function() {
+											alert("Error fetching photos");
+										}
+									});
+							$.ajax({
+								url : prod_url + "/api/stats/getDetails",
+								type : "GET",
+								success : function(data) {
+									$("#happyCustomers").text(
+											data.happyCustomers + "+");
+									$("#inProgressProjects").text(
+											data.inProgressProjects);
+								},
+								error : function() {
+									$("#happyCustomers").text("Error");
+									$("#inProgressProjects").text("Error");
+								}
+							});
+							$('#enquiryForm')
+									.submit(
+											function(event) {
+												event.preventDefault(); // Prevent default form submission
+												$('.spinner-container').show();
+												// Get form data
+												var formData = {
+													name : $(
+															'input[name="name"]')
+															.val(),
+													email : $(
+															'input[name="email"]')
+															.val(),
+													mobile : $(
+															'input[name="mobile"]')
+															.val(),
+													message : $(
+															'textarea[name="message"]')
+															.val()
+												};
+
+												// Send data via AJAX
+												$
+														.ajax({
+															type : "POST",
+															url : prod_url
+																	+ "/api/enquiries/save",
+															contentType : "application/json",
+															data : JSON
+																	.stringify(formData),
+															success : function(
+																	response) {
+																$(
+																		'.spinner-container')
+																		.hide();
+																alert(response); // Show success message
+																$('#enquiryForm')[0]
+																		.reset(); // Reset form after submission
+															},
+															error : function(
+																	xhr,
+																	status,
+																	error) {
+																alert("Error: "
+																		+ xhr.responseText); // Show error message
+															}
+														});
+											});
+						});
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		$(document).ready(function() {
-			$.ajax({
-			    	url: prod_url+"/api/location/all", // Adjust URL as per backend
-					type: "GET",
-					success: function(response) {
-						    let locationsContainer = $("#locations-container");
-						 	locationsContainer.empty(); // Clear existing data
-							   console.log("API Response:", response);
-							   let data = Array.isArray(response) ? response : response.locations; // Ensure it's an array
-							   if (!Array.isArray(data)) {
-							   		                   console.error("Unexpected API response format:", response);
-							   		                   return;
-							   		               }
-												   
+		    function loadLocations() {
+		        $.ajax({
+		            url: prod_url + "/api/location/all", // Adjust URL as per backend
+		            type: "GET",
+		            success: function(response) {
+		                console.log("API Response:", response);
+		                let data = Array.isArray(response) ? response : response.locations; // Ensure it's an array
+		                
+		                if (!Array.isArray(data)) {
+		                    console.error("Unexpected API response format:", response);
+		                    return;
+		                }
 
-                            data.forEach(function (location) {	
-								
-								let imageSrc = location.image 
-									? 'data:image/jpeg;base64,' + location.image
-									: "default-placeholder.jpg"; // Fallback image
-									let locationCard = '<img src="' + imageSrc + '" alt="Site Photo">';
-								 locationsContainer.append(locationCard);
-							});				   
-												   
-			               },
-			               error: function() {
-			                   alert("Error fetching photos");
-			               }
-			  });
-			$.ajax({
-				url : prod_url + "/api/stats/getDetails",
-				type : "GET",
-				success : function(data) {
-					$("#happyCustomers").text(data.happyCustomers + "+");
-					$("#inProgressProjects").text(data.inProgressProjects);
-				},
-				error : function() {
-					$("#happyCustomers").text("Error");
-					$("#inProgressProjects").text("Error");
-				}
-			});
-			$('#enquiryForm').submit(function(event) {
-				event.preventDefault(); // Prevent default form submission
-				$('.spinner-container').show();
-				// Get form data
-				var formData = {
-					name : $('input[name="name"]').val(),
-					email : $('input[name="email"]').val(),
-					mobile : $('input[name="mobile"]').val(),
-					message : $('textarea[name="message"]').val()
-				};
+		                let locationsContainer = $("#locations-container");
+		                locationsContainer.empty(); // Clear existing data
 
-				// Send data via AJAX
-				$.ajax({
-					type : "POST",
-					url : prod_url + "/api/enquiries/save",
-					contentType : "application/json",
-					data : JSON.stringify(formData),
-					success : function(response) {
-						$('.spinner-container').hide();
-						alert(response); // Show success message
-						$('#enquiryForm')[0].reset(); // Reset form after submission
-					},
-					error : function(xhr, status, error) {
-						alert("Error: " + xhr.responseText); // Show error message
-					}
-				});
-			});
+		                data.forEach(function(location) {
+		                    let siteName = location.siteName || "Unknown Location";
+		                    let address = location.address || "Address not available";
+		                    let mapLink = location.mapLink || "#";
+		                    
+		                    let facilitiesHtml = "";
+		                    if (location.facilities) {
+		                        facilitiesHtml = location.facilities.split(',')
+		                            .map(function(facility) {
+		                                return '<span><i class="fa-solid fa-check"></i> ' + facility.trim() + '</span>';
+		                            })
+		                            .join('');
+		                    }
+
+		                    // Decode Base64 image
+		                    let imageSrc = location.image 
+		                        ? 'data:image/jpeg;base64,' + location.image
+		                        : "default-placeholder.jpg"; // Fallback image
+
+		                    let locationCard = 
+		                        '<div class="location-card" onclick="openLocationInfo(\'' + siteName + '\')">' +
+		                            '<img src="' + imageSrc + '" alt="' + siteName + '">' +
+		                        '</div>';
+
+		                    locationsContainer.append(locationCard);
+		                });
+		            },
+		            error: function(xhr) {
+		                console.error("Error loading locations:", xhr.responseText);
+		                alert("Failed to load locations. Please try again later.");
+		            }
+		        });
+		    }
+
+		    // Define the openLocationInfo function in the global scope
+		    window.openLocationInfo = function(siteName) {
+		        // Redirect to locationInfo.jsp with the siteName as a query parameter
+		        window.location.href = 'locationInfo.jsp?siteName=' + encodeURIComponent(siteName);
+		    };
+
+		    loadLocations(); 
+
+		    $("#search").on("keyup", function() {
+		        let value = $(this).val().toLowerCase();
+		        $(".location-card").filter(function() {
+		            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+		        });
+		    });
 		});
 	</script>
 </body>
