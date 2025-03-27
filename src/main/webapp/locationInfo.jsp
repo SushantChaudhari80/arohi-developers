@@ -211,6 +211,14 @@
             grid-template-columns: 1fr;
         }
     }
+	.highlights ul {
+	           list-style-type: disc;
+	           padding-left: 20px;
+	       }
+	       .highlights ul li {
+	           margin-bottom: 5px;
+	           color: #333;
+	       }
 </style>
 </head>
 <body>
@@ -242,6 +250,7 @@
     <div id="location-details">
         <p>Loading location information...</p>
     </div>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -276,13 +285,44 @@
                         const mapLink = location.mapLink || "#";
                         let facilitiesHtml = "";
 
-                        if (location.facilities) {
-                            facilitiesHtml = location.facilities.split(',')
-                                .map(function(facility) {
-                                    return '<span><i class="fa-solid fa-check"></i> ' + facility.trim() + '</span>';
-                                })
-                                .join('');
-                        }
+						if (location.facilities) {
+						    // Mapping facilities to specific Font Awesome icons
+						    var facilityIcons = {
+						        "Wall compound to entire project": "fa-border-all",
+						        "Main entrance gate": "fa-door-open",
+						        "Proper Water supply": "fa-faucet",
+						        "24 Hr security": "fa-shield-halved",
+						        "Individual fencing to every plot": "fa-grip-lines",
+						        "Tree plantation to every plot": "fa-tree",
+						        "Internal 20ft tar road": "fa-road",
+						        "Proper electricity supply": "fa-bolt",
+						        "garbage Lines": "fa-trash"
+						    };
+
+						    facilitiesHtml = location.facilities.split(',').map(function(facility) {
+						        var trimmedFacility = facility.trim();
+						        console.log("Facility: " + trimmedFacility); // Debugging log
+
+						        // Use specific icon if available, otherwise fallback to a default check icon
+						        var iconClass = facilityIcons[trimmedFacility] ? facilityIcons[trimmedFacility] : "fa-check";
+						        console.log("Icon Class: " + iconClass); // Debugging log
+
+						        return '<span><i class="fa-solid ' + iconClass + '"></i> ' + trimmedFacility + '</span>';
+						    }).join('');
+						}
+
+
+						
+						let highlightsHtml = "";
+						if (location.highlights) {
+						    highlightsHtml = "<div class='highlights'><h4>Highlights</h4><ul>" +
+						        location.highlights.split("\r\n").map(function(line) {
+						            line = line.replace("*", "").trim();
+						            return line ? "<li>" + line + "</li>" : "";
+						        }).join('') +
+						    "</ul></div>";
+						}
+
 
                         const imageSrc = location.image 
                             ? 'data:image/jpeg;base64,' + location.image
@@ -295,6 +335,7 @@
                                     '<h2>' + siteName + '</h2>',
                                     '<p>' + address + '</p>',
                                     (facilitiesHtml ? '<div class="amenities">' + facilitiesHtml + '</div>' : ''),
+									(highlightsHtml ? highlightsHtml : ''),
                                     '<a href="' + mapLink + '" target="_blank" class="view-map">',
                                         'View on Map <i class="fa-solid fa-map-location-dot"></i>',
                                     '</a>',

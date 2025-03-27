@@ -28,10 +28,11 @@ public class LocationController {
             @RequestParam("siteName") String siteName,
             @RequestParam("address") String address,
             @RequestParam("facilities") String facilities,
-            @RequestParam("mapLink") String mapLink) {
+            @RequestParam("mapLink") String mapLink,
+            @RequestParam("highlights") String highlights) {
 
         try {
-            Location savedLocation = locationService.saveLocation(file, siteName, address, facilities, mapLink);
+            Location savedLocation = locationService.saveLocation(file, siteName, address, facilities, mapLink,highlights);
             return "Location saved successfully with ID: " + savedLocation.getId();
         } catch (IOException e) {
             return "Error saving location: " + e.getMessage();

@@ -123,7 +123,7 @@ body {
 /* Change background image for mobile screens */
 @media (max-width: 576px) {
     #hero {
-        background: url('home_bg.png') no-repeat center top;
+        background: url('bg2.png') no-repeat center top;
         background-size: cover;
     }
     
@@ -508,7 +508,7 @@ keyframes progressLine {to { scale:11;
 							</p>
 							<button
 								class="btn btn-warning fw-semibold text-light py-2 px-4 text-uppercase">
-								<a class="nav-link" href="RESUME_deepak_bharate.pdf">Download
+								<a class="nav-link" href="catlog.pdf">Download
 									Catalog</a>
 							</button>
 						</div>

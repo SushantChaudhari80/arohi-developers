@@ -16,6 +16,10 @@ public class Location {
     private String address;
     private String facilities;
     private String mapLink;
+
+    @Column(columnDefinition = "TEXT") // Use TEXT for longer content
+    private String highlights;
+    
     @Lob
     @Column(name = "image", columnDefinition = "MEDIUMBLOB")
     private byte[] image;
@@ -59,13 +63,24 @@ public class Location {
 	}
 	
 	
-	public Location(Long id, String siteName, String address, String facilities, String mapLink, byte[] image) {
+	
+	public String getHighlights() {
+		return highlights;
+	}
+	public void setHighlights(String highlights) {
+		this.highlights = highlights;
+	}
+	
+	
+	public Location(Long id, String siteName, String address, String facilities, String mapLink, String highlights,
+			byte[] image) {
 		super();
 		this.id = id;
 		this.siteName = siteName;
 		this.address = address;
 		this.facilities = facilities;
 		this.mapLink = mapLink;
+		this.highlights = highlights;
 		this.image = image;
 	}
 	public Location() {

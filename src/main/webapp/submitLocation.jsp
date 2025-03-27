@@ -74,9 +74,24 @@
                 formData.append("locationImg", $("#locationImg")[0].files[0]);
                 formData.append("siteName", $("#siteName").val());
                 formData.append("address", $("#address").val());
-                formData.append("facilities", $("#facilities").val());
+               
+				// Collect selected amenities and append to formData
+				let selectedAmenities = [];
+				$("input[name='amenities[]']:checked").each(function() {
+				    selectedAmenities.push($(this).val());
+				});
+
+				// Include other amenities from the textarea
+				let otherAmenities = $("#facilities").val();
+
+				// Combine all amenities into a single string (comma-separated)
+				let allAmenities = selectedAmenities.join(", ") + (otherAmenities ? ", " + otherAmenities : "");
+
+				formData.append("facilities", allAmenities);
+				
                 formData.append("mapLink", $("#mapLink").val());
-                
+				formData.append("highlights", $("#highlights").val());
+				
                 let url = editingId ? prod_url+"/api/location/update/" + editingId : prod_url+"/api/location/save";
                 let type = editingId ? "PUT" : "POST";
 
@@ -155,10 +170,73 @@
                 <label class="form-label">Address</label>
                 <textarea id="address" name="address" class="form-control" rows="3" required></textarea>
             </div>
-            <div class="mb-3">
-                <label class="form-label">Facilities</label>
+          <!--  <div class="mb-3">
+                <label class="form-label">Amenities</label>
                 <textarea id="facilities" name="facilities" class="form-control" rows="3" required></textarea>
-            </div>
+            </div>-->
+			
+			<div class="mb-3">
+			    <label class="form-label">Amenities</label>
+
+			    <!-- Checkboxes for specific amenities -->
+			    <div class="form-check">
+			        <input class="form-check-input" type="checkbox" id="wallCompound" name="amenities[]" value="Wall compound to entire project">
+			        <label class="form-check-label" for="wallCompound">Wall compound to entire project</label>
+			    </div>
+
+			    <div class="form-check">
+			        <input class="form-check-input" type="checkbox" id="mainGate" name="amenities[]" value="Main entrance gate">
+			        <label class="form-check-label" for="mainGate">Main entrance gate</label>
+			    </div>
+
+			    <div class="form-check">
+			        <input class="form-check-input" type="checkbox" id="waterSupply" name="amenities[]" value="Proper Water supply">
+			        <label class="form-check-label" for="waterSupply">Proper Water supply</label>
+			    </div>
+
+			    <div class="form-check">
+			        <input class="form-check-input" type="checkbox" id="security" name="amenities[]" value="24 Hr security">
+			        <label class="form-check-label" for="security">24 Hr security</label>
+			    </div>
+
+			    <div class="form-check">
+			        <input class="form-check-input" type="checkbox" id="individualFencing" name="amenities[]" value="Individual fencing to every plot">
+			        <label class="form-check-label" for="individualFencing">Individual fencing to every plot</label>
+			    </div>
+
+			    <div class="form-check">
+			        <input class="form-check-input" type="checkbox" id="treePlantation" name="amenities[]" value="Tree plantation to every plot">
+			        <label class="form-check-label" for="treePlantation">Tree plantation to every plot</label>
+			    </div>
+
+			    <div class="form-check">
+			        <input class="form-check-input" type="checkbox" id="tarRoad" name="amenities[]" value="Internal 20ft tar road">
+			        <label class="form-check-label" for="tarRoad">Internal 20ft tar road</label>
+			    </div>
+
+			    <div class="form-check">
+			        <input class="form-check-input" type="checkbox" id="electricity" name="amenities[]" value="Proper electricity supply">
+			        <label class="form-check-label" for="electricity">Proper electricity supply</label>
+			    </div>
+
+			    <div class="form-check">
+			        <input class="form-check-input" type="checkbox" id="nameBoard" name="amenities[]" value="Individual name board">
+			        <label class="form-check-label" for="nameBoard">Individual name board</label>
+			    </div>
+
+			    <div class="form-check">
+			        <input class="form-check-input" type="checkbox" id="propertySecurity" name="amenities[]" value="Arrangement of property security">
+			        <label class="form-check-label" for="propertySecurity">Arrangement of property security</label>
+			    </div>
+
+			    <!-- Textarea for additional amenities -->
+			    <textarea id="facilities" name="facilities" class="form-control mt-2" rows="3" placeholder="Other amenities..." required></textarea>
+			</div>
+
+			<div class="mb-3">
+			     <label class="form-label">Location Highlights</label>
+			     <textarea id="highlights" name="highlights" class="form-control" rows="3" required></textarea>
+			</div>
             <div class="mb-3">
                 <label class="form-label">Google Map Link</label>
                 <input type="text" id="mapLink" name="mapLink" class="form-control" required>

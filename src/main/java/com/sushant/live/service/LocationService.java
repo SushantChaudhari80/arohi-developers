@@ -19,12 +19,13 @@ public class LocationService {
     @Autowired
     private LocationRepository locationRepository;
 
-    public Location saveLocation(MultipartFile file, String siteName, String address, String facilities, String mapLink) throws IOException {
+    public Location saveLocation(MultipartFile file, String siteName, String address, String facilities, String mapLink ,String highlights) throws IOException {
         Location location = new Location();
         location.setSiteName(siteName);
         location.setAddress(address);
         location.setFacilities(facilities);
         location.setMapLink(mapLink);
+        location.setHighlights(highlights);
         location.setImage(file.getBytes()); // Convert image to byte array (BLOB)
 
         return locationRepository.save(location);
