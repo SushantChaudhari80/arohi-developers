@@ -253,6 +253,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<jsp:include page="url.jsp" />
     <script>
         function getQueryParameter(name) {
             const urlParams = new URLSearchParams(window.location.search);
@@ -262,7 +263,7 @@
         $(document).ready(function() {
             const siteNameParam = getQueryParameter('siteName');
             const siteName = siteNameParam ? decodeURIComponent(siteNameParam) : null;
-            const prod_url = "http://localhost:8084"; // Update with your actual backend URL
+       
 
             if (!siteName) {
                 $('#location-details').html('<p class="error">No site name provided in URL parameters.</p>');
