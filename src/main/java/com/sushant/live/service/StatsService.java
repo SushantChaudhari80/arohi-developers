@@ -18,7 +18,7 @@ public class StatsService {
 	 public Map<String, Integer> getStats(){
 		 Map<String, Integer> stats = new HashMap<>();
 
-	        stats.put("happyCustomers", customerService.getAllCustomers().size());
+	        stats.put("happyCustomers",500+ customerService.getAllCustomers().size());
 	        stats.put("inProgressProjects", locationService.getAllLocations().size());
 	        return stats;
 	 }

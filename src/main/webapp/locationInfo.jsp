@@ -14,6 +14,8 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+	
+	
     
    <style>
     /* Google Fonts */
@@ -33,41 +35,63 @@
     }
     
     
-.navbar {
-	background-color: rgba(0, 0, 0, 0.8) !important; /* More transparency */
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-	transition: background-color 0.3s ease-in-out;
-	backdrop-filter: blur(8px); /* Adds a slight blur effect */
-}
+ .navbar {
+		    background: rgba(0, 0, 0, 0.8) !important; /* Black background */
+		    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+		    backdrop-filter: blur(8px);
+		    transition: background-color 0.3s ease-in-out;
+		}
+		
+		.navbar .nav-link,
+		.navbar .navbar-brand {
+		    color: white !important; /* White text */
+		}
 
-.navbar-brand img {
-	height: 65px;
-	width: 65px;
-	border-radius: 20%; /* Circular shape */
-	border: 0px solid white; /* White border around the image */
-	padding: 1px; /* Space between image and border */
-	background-color: white; /* Ensures the background inside the border */
-	object-fit: contain; /* Ensures the full image is visible */
-}
+        
+		.navbar-brand img {
+			height: 60px;
+			width: 60px;
+			border-radius: 20%; /* Circular shape */
+			border: 0px solid white; /* White border around the image */
+			padding: 1px; /* Space between image and border */
+			background-color: white; /* Ensures the background inside the border */
+			object-fit: contain; /* Ensures the full image is visible */
+		}
+		
+		/* Change navbar toggler icon to white */
+		.navbar-light .navbar-toggler-icon {
+			filter: invert(1);
+		}
 
-.navbar-light .navbar-nav .nav-link {
-	color: white !important; /* White nav items */
-	font-size: 1.4rem;
-	font-weight: 500;
-	transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
-}
+        .nav-link {
+            font-size: 1.1rem;
+            position: relative;
+        }
 
-.navbar-light .navbar-nav .nav-link:hover {
-	color: #ff5733 !important; /* Orange hover effect */
-	transform: scale(1.15); /* Increased zoom effect */
-	transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
-}
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            bottom: 0;
+            left: 0;
+            transition: 0.3s;
+        }
 
-/* Change navbar toggler icon to white */
-.navbar-light .navbar-toggler-icon {
-	filter: invert(1);
-}
-    
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .tital{
+        text-align: center;
+        color: #2c3e50;
+        margin-bottom: 2rem;
+        font-size: 2.5rem;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        margin-top: 100px; 
+        
+        }
+  
 
     h1 {
         text-align: center;
@@ -224,29 +248,41 @@
 <body>
 
 
-	<nav class="navbar navbar-expand-lg navbar-light">
-		<div class="container">
-			<a class="navbar-brand" href="home.jsp"> <img src="logo.png"
-				alt="Arohi Developers">
-			</a>
-			<button class="navbar-toggler" type="button"
-				data-bs-toggle="collapse" data-bs-target="#navbarNav">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav ms-auto">
-					<li class="nav-item me-3"><a class="nav-link" href="#sales">Sales</a></li>
-					<li class="nav-item me-3"><a class="nav-link"
-						href="#locations-container">Our Project</a></li>
-					<li class="nav-item me-3"><a class="nav-link"
-						href="http://wa.me/+919665555079?text=Hi" target="_blank">Chat</a></li>
-					<li class="nav-item me-3"><a class="nav-link" href="#contact">Enquiry</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+	 <!-- Navigation -->
+	 
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="home.jsp">
+                <img src="logo.png" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item mx-3">
+					    <a class="nav-link" href="home.jsp" >home</a>
+					</li>
+					<li class="nav-item mx-3">
+					    <a class="nav-link" href="#sales" >Sales</a>
+					</li>
+					<li class="nav-item mx-3">
+					    <a class="nav-link" href="home.jsp#projects-section" >Projects</a>
+					</li>
+					<li class="nav-item mx-3">
+						<a class="nav-link" href="http://wa.me/+919665555079?text=Hi" target="_blank"  >Chat</a>
+						</li>
+					<li class="nav-item mx-3">
+					    <a class="nav-link" href="home.jsp#contact">Contact</a>
+					</li>
 
-    <h1>Location Information</h1>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    
+    <h1 class="tital">Location Information</h1>
     <div id="location-details">
         <p>Loading location information...</p>
     </div>
