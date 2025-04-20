@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arohi Developers - Real Estate</title>
+	<link rel="icon" type="image/png" href="logo.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -489,10 +490,10 @@
             <h5 class="mb-4">Aarohi Developers & Landmarks LLP</h5>
             <p class="mb-2">Address: 101, Raigad Building, Shivaji Chowk,<br>
             Hinjawadi Phase 2 Rd, Hinjawadi,<br>
-            Hinjewadi, Maharashtra 411057</p>
+            Pune, Maharashtra 411057</p>
             <p class="mb-2">Phone: <a href="tel:9175991177" class="text-white">9175991177</a></p>
             <p class="mb-2">Email: <a href="mailto:sales@aarohidevelopers.com" class="text-white">sales@aarohidevelopers.com</a></p>
-            <p class="mb-3">Website: <a href="https://www.aarohidevelopers.com" class="text-white" target="_blank">www.aarohidevelopers.com</a></p>
+            <p class="mb-3">Website: <a href="https://www.aarohidevelopers.com" class="text-white" target="_blank">aarohidevelopers.com</a></p>
         </div>
         <p class="text-white mb-3">&copy; 2024 Aarohi Developers. All rights reserved.</p>
         <div class="social-icons">

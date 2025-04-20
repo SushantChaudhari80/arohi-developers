@@ -1,5 +1,5 @@
 <script>
 //	const prod_url="";
-const prod_url="/arohi-develpers";
+const prod_url="/pune";
 
 </script>
