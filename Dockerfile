@@ -1,11 +1,4 @@
-# Use official Tomcat base image
-FROM tomcat:9-jdk17
+FROM openjdk:17-jdk
+COPY target/arohi-develpers-0.0.1-SNAPSHOT.war app.war
+ENTRYPOINT ["java", "-jar", "/app.war"]
 
-# Remove default web apps
-RUN rm -rf /usr/local/tomcat/webapps/*
-
-# Copy your WAR file into Tomcat's webapps directory
-COPY target/*.war /usr/local/tomcat/webapps/ROOT.war
-
-# Expose the port
-EXPOSE 8080
