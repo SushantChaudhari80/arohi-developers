@@ -18,6 +18,7 @@ jobs:
         host: ${{ secrets.SERVER_IP }}
         username: ${{ secrets.SERVER_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: 2244                    
         script: |
           echo "Deploying Spring Boot app via Docker..."
           cd /opt/apps/springboot-app
