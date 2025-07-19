@@ -1,14 +1,13 @@
-# Use Eclipse Temurin OpenJDK image
-FROM eclipse-temurin:17-jdk
+# Use official Tomcat base image
+FROM tomcat:9-jdk17
 
-# Set working directory inside container
-WORKDIR /app
+# Remove default web apps
+RUN rm -rf /usr/local/tomcat/webapps/*
 
-# Copy your jar file into the image
-COPY target/*.jar app.jar
+# Copy your WAR file into the webapps directory
+COPY target/*.war /usr/local/tomcat/webapps/ROOT.war
 
-# Expose port
+# Expose port 8080
 EXPOSE 8080
 
-# Start the Spring Boot app
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Start Tomcat (already handled by base image)
