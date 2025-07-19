@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Controller
 public class JobManagerControllar {
 
-	@GetMapping("/")
+	@GetMapping("/home")
 	public String getIndex() {
 		System.out.println("Working as expected ");
 		return "home";
