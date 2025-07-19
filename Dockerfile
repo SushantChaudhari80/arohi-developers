@@ -4,10 +4,8 @@ FROM tomcat:9-jdk17
 # Remove default web apps
 RUN rm -rf /usr/local/tomcat/webapps/*
 
-# Copy your WAR file into the webapps directory
+# Copy your WAR file into Tomcat's webapps directory
 COPY target/*.war /usr/local/tomcat/webapps/ROOT.war
 
-# Expose port 8080
+# Expose the port
 EXPOSE 8080
-
-# Start Tomcat (already handled by base image)
