@@ -12,16 +12,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Copy project files to server
-      uses: appleboy/scp-action@master
-      with:
-        host: ${{ secrets.SERVER_IP }}
-        username: ${{ secrets.SERVER_USER }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        port: 2244
-        source: "."
-        target: "/opt/apps/springboot-app"
-
     - name: Deploy via SSH
       uses: appleboy/ssh-action@master
       with:
@@ -33,15 +23,19 @@ jobs:
           echo "Deploying WAR Spring Boot app via Docker..."
           cd /opt/apps/springboot-app
 
-          echo "Building WAR..."
+          echo "Giving execute permission to Maven wrapper..."
+          chmod +x mvnw
+
+          echo "Building WAR file..."
           ./mvnw clean package -DskipTests
 
-          echo "Building Docker image with WAR..."
+          echo "Building Docker image locally..."
           docker build -t springboot-war-app .
 
-          echo "Stopping and removing old container..."
-          docker stop springboot || true
-          docker rm springboot || true
+          echo "Stopping old container if exists..."
+          docker stop springboot-war || true
+          docker rm springboot-war || true
 
-          echo "Running new container..."
-          docker run -d --name springboot -p 8080:8080 springboot-war-app
+          echo "Running WAR file in Tomcat container..."
+          docker run -d --name springboot-war -p 8080:8080 springboot-war-app
+
