@@ -1,4 +1,4 @@
-name: Deploy App
+name: Deploy Spring Boot App
 
 on:
   push:
@@ -12,9 +12,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Set up Docker
-      uses: docker/setup-buildx-action@v2
-
     - name: Deploy to server via SSH
       uses: appleboy/ssh-action@master
       with:
@@ -22,7 +19,15 @@ jobs:
         username: ${{ secrets.SERVER_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
-          cd /home/user/apps/springboot-app
+          echo "Deploying Spring Boot app via Docker..."
+          cd /opt/apps/springboot-app
+
+          echo "Building Docker image..."
           docker build -t springboot-app .
-          docker stop springboot || true && docker rm springboot || true
+
+          echo "Stopping and removing old container if it exists..."
+          docker stop springboot || true
+          docker rm springboot || true
+
+          echo "Running new container..."
           docker run -d --name springboot -p 8080:8080 springboot-app
