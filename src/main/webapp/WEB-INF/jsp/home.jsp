@@ -668,7 +668,7 @@
  		    // Define the openLocationInfo function in the global scope
  		    window.openLocationInfo = function(siteName) {
  		        // Redirect to locationInfo.jsp with the siteName as a query parameter
- 		        window.location.href = 'locationInfo.jsp?siteName=' + encodeURIComponent(siteName);
+ 		        window.location.href = '/WEB-INF/jsp/locationInfo.jsp?siteName=' + encodeURIComponent(siteName);
  		    };
  
  		    loadLocations(); 
