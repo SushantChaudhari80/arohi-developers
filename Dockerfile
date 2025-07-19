@@ -1,9 +1,14 @@
-- name: Copy source code to server
-  uses: appleboy/scp-action@master
-  with:
-    host: ${{ secrets.SERVER_IP }}
-    username: ${{ secrets.SERVER_USER }}
-    key: ${{ secrets.SSH_PRIVATE_KEY }}
-    port: 2244
-    source: "."
-    target: "/opt/apps/springboot-app"
+# Use Eclipse Temurin OpenJDK image
+FROM eclipse-temurin:17-jdk
+
+# Set working directory inside container
+WORKDIR /app
+
+# Copy your jar file into the image
+COPY target/*.jar app.jar
+
+# Expose port
+EXPOSE 8080
+
+# Start the Spring Boot app
+ENTRYPOINT ["java", "-jar", "app.jar"]
