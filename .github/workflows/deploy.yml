@@ -1,53 +1,51 @@
-name: Deploy Spring Boot WAR App
+name: Deploy WAR to Server
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # ✅ Step 1: Copy project files to server
-    - name: Copy project files to server
+    - name: Set up Java
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    - name: Install Maven
+      run: sudo apt-get install maven -y
+
+    - name: Build WAR file
+      run: mvn clean package
+
+    - name: Upload project to server
       uses: appleboy/scp-action@master
       with:
-        host: ${{ secrets.SERVER_IP }}
-        username: ${{ secrets.SERVER_USER }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        host: 103.91.187.228
+        username: root
         port: 2244
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
         source: "."
         target: "/opt/apps/springboot-app"
 
-    # ✅ Step 2: SSH into server, build and deploy WAR Docker container
-    - name: Deploy via SSH
+    - name: SSH and deploy container
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.SERVER_IP }}
-        username: ${{ secrets.SERVER_USER }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        host: 103.91.187.228
+        username: root
         port: 2244
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
-          echo "Starting deployment..."
-
           cd /opt/apps/springboot-app
-
-          echo "Building WAR using Maven..."
-          ./mvnw clean package -DskipTests
-
-          echo "Logging in to Docker Hub to avoid rate limit..."
-          echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
-
-          echo "Building Docker image..."
-          docker build -t springboot-war-app .
-
-          echo "Stopping and removing existing container if running..."
           docker stop springboot-war || true
           docker rm springboot-war || true
-
-          echo "Running new container..."
-          docker run -d --name springboot-war -p 8080:8080 springboot-war-app
+          docker rmi springboot-war-app || true
+          docker build -t springboot-war-app .
+          docker run -d -p 8084:8084 --name springboot-war springboot-war-app
