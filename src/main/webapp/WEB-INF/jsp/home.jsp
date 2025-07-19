@@ -72,7 +72,7 @@
         }
 
         #hero {
-            background: url('arohi1.png') center/cover;
+            background: url('/WEB-INF/jsp/arohi1.png') center/cover;
             min-height: 100vh;
             position: relative;
             margin-top: 55px;
