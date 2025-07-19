@@ -1,4 +1,4 @@
-name: Deploy WAR Spring Boot Website
+name: Deploy Spring Boot WAR App
 
 on:
   push:
@@ -12,6 +12,18 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
+    # ✅ Step 1: Copy project files to server
+    - name: Copy project files to server
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.SERVER_IP }}
+        username: ${{ secrets.SERVER_USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: 2244
+        source: "."
+        target: "/opt/apps/springboot-app"
+
+    # ✅ Step 2: SSH into server, build and deploy WAR Docker container
     - name: Deploy via SSH
       uses: appleboy/ssh-action@master
       with:
@@ -20,22 +32,22 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 2244
         script: |
-          echo "Deploying WAR Spring Boot app via Docker..."
+          echo "Starting deployment..."
+
           cd /opt/apps/springboot-app
 
-          echo "Giving execute permission to Maven wrapper..."
-          chmod +x mvnw
-
-          echo "Building WAR file..."
+          echo "Building WAR using Maven..."
           ./mvnw clean package -DskipTests
 
-          echo "Building Docker image locally..."
+          echo "Logging in to Docker Hub to avoid rate limit..."
+          echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+
+          echo "Building Docker image..."
           docker build -t springboot-war-app .
 
-          echo "Stopping old container if exists..."
+          echo "Stopping and removing existing container if running..."
           docker stop springboot-war || true
           docker rm springboot-war || true
 
-          echo "Running WAR file in Tomcat container..."
+          echo "Running new container..."
           docker run -d --name springboot-war -p 8080:8080 springboot-war-app
-
