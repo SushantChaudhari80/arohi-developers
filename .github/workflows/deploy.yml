@@ -1,4 +1,4 @@
-name: Deploy Spring Boot App
+name: Deploy WAR Spring Boot Website
 
 on:
   push:
@@ -12,7 +12,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # ✅ Step 1: Copy files to server
     - name: Copy project files to server
       uses: appleboy/scp-action@master
       with:
@@ -23,7 +22,6 @@ jobs:
         source: "."
         target: "/opt/apps/springboot-app"
 
-    # ✅ Step 2: SSH and deploy
     - name: Deploy via SSH
       uses: appleboy/ssh-action@master
       with:
@@ -32,15 +30,18 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 2244
         script: |
-          echo "Deploying Spring Boot app via Docker..."
+          echo "Deploying WAR Spring Boot app via Docker..."
           cd /opt/apps/springboot-app
 
-          echo "Building Docker image..."
-          docker build -t springboot-app .
+          echo "Building WAR..."
+          ./mvnw clean package -DskipTests
+
+          echo "Building Docker image with WAR..."
+          docker build -t springboot-war-app .
 
           echo "Stopping and removing old container..."
           docker stop springboot || true
           docker rm springboot || true
 
           echo "Running new container..."
-          docker run -d --name springboot -p 8080:8080 springboot-app
+          docker run -d --name springboot -p 8080:8080 springboot-war-app
